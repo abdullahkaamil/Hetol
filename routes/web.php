@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', function() {return "Goodbye";});
+
+Route::get('/rooms/{roomType?}', 'ShowRoomsController');
+
+Route::resource('bookings', 'BookingController');
+
+Route::resource('room_types', 'RoomTypeController');
