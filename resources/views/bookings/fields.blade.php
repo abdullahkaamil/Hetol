@@ -1,5 +1,5 @@
-@if()
-@endif
+{{-- @if()
+@endif --}}
 <div class="form-group row">
         <label class="col-sm-2 col-form-label"for="room_id">Room</label>
         <div class="col-sm-10">
