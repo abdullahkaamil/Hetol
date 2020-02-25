@@ -16,8 +16,7 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::with(['room.roomType', 'users:name'])->paginate(1);
-        return view('bookings.index')
-            ->with('bookings', $bookings);
+        return view('bookings.index')->with('bookings', $bookings);
     }
 
     /**
@@ -72,7 +71,8 @@ class BookingController extends Controller
     {
         $users = DB::table('users')->get()->pluck('name', 'id')->prepend('none');
         $rooms = DB::table('rooms')->get()->pluck('number', 'id');
-        $bookingsUser = DB::table('bookings_users')->where('booking_id', $booking->id)->first();
+        $bookingsUser = DB::table('bookings_users')->where('booking_id', $booking->id)->get();
+      
         return view('bookings.edit')
             ->with('bookingsUser', $bookingsUser)
             ->with('users', $users)
