@@ -1,7 +1,8 @@
 <?php 
 namespace App\Libraries;
 
-class Notification
+use App\Libraries\NotificationsInterface;
+class Notification implements NotificationInterface
 {
     public function send()
     {

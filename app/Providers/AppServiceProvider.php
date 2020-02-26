@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Libraries\Notification', function($app){
+        $this->app->bind('App\Libraries\NotificationInterface', function($app){
             return new \App\Libraries\Notification();
         });
     }
