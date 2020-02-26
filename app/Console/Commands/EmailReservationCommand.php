@@ -11,7 +11,8 @@ class EmailReservationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'reservations:notify';
+    protected $signature = 'reservations:notify
+    {count : The number of bookings to retrieve}';
 
     /**
      * The console command description.
@@ -37,7 +38,12 @@ class EmailReservationCommand extends Command
      */
     public function handle()
     {
-        $bookings = \App\Booking::with(['room.roomType', 'users'])->get();
+        $count = $this->argument('count');
+        if(!is_numeric($count)){
+            $this->alert('the count must be a number');
+            return 1; 
+        }
+        $bookings = \App\Booking::with(['room.roomType', 'users'])->limit($count)->get();
         $this->info(sprintf('The number of bookings to alert for is : %d', $bookings->count()));
         $bar = $this->output->createProgressBar($bookings->count());
         $bar->start();
