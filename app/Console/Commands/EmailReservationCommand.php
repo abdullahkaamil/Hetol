@@ -27,8 +27,9 @@ class EmailReservationCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Libraries\Notification $notify)
     {
+        $this->notify = $notify;
         parent::__construct();
     }
 
@@ -56,7 +57,8 @@ class EmailReservationCommand extends Command
             if($this->option('dry-run')){
                 $this->info('Would process booking');
             } else {
-                $this->error('Nothing Happened');
+                // $this->error('Nothing Happened');
+                $this->notify->send();
             }
             $bar->advance();
         }

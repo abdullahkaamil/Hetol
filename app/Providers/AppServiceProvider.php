@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Libraries\Notification', function($app){
+            return new \App\Libraries\Notification();
+        });
     }
 
     /**
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-         Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
     }
 }
