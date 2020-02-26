@@ -12,7 +12,8 @@ class EmailReservationCommand extends Command
      * @var string
      */
     protected $signature = 'reservations:notify
-    {count : The number of bookings to retrieve}';
+    {count : The number of bookings to retrieve}
+    {--dry-run= : To have this command do no actual work.}';
 
     /**
      * The console command description.
@@ -48,7 +49,11 @@ class EmailReservationCommand extends Command
         $bar = $this->output->createProgressBar($bookings->count());
         $bar->start();
         foreach($bookings as $booking){
-            $this->error('Nothing Happened');
+            if($this->option('dry-run')){
+                $this->info('Would process booking');
+            } else {
+                $this->error('Nothing Happened');
+            }
             $bar->advance();
         }
         $bar->finish();
