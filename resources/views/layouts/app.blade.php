@@ -149,6 +149,10 @@
                   </li>
               @endif
           @else
+          <li class="nav-item">      
+                            <a class="nav-link" href="{{ route('plans.index') }}">{{ __('Plans') }}</a>
+                          </li>
+
               <li class="nav-item">
                   <a class="nav-link" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
@@ -195,5 +199,6 @@
     <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
   </body>
 </html>
