@@ -26,3 +26,10 @@ Route::get('/rooms/{roomType?}', 'ShowRoomsController');
 Route::resource('bookings', 'BookingController');
 
 Route::resource('room_types', 'RoomTypeController');
+
+// Route::get('stripe', 'StripePaymentController@stripe');
+// Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+
+Route::get('/plans', 'PlanController@index')->name('plans.index');
+Route::get('/plan/{plan}', 'PlanController@show')->name('plans.show');
+Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');

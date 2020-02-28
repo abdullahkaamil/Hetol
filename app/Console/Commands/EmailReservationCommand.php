@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Facades\App\Libraries\Notification;
+use App\Libraries\Notification;
 
 class EmailReservationCommand extends Command
 {
@@ -28,10 +28,9 @@ class EmailReservationCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Notification $notify)
     {
-
-        // $this->notify = $notify;
+        $this->notify = $notify;
         parent::__construct();
     }
 
@@ -60,8 +59,8 @@ class EmailReservationCommand extends Command
                 $this->info('Would process booking');
             } else {
                 // $this->error('Nothing Happened');
-                // $this->notify->send();
-                Notification::send();
+                $this->notify->send();
+                // Notification::send();
             }
             $bar->advance();
         }
