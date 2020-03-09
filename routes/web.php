@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -33,3 +33,6 @@ Route::resource('room_types', 'RoomTypeController');
 Route::get('/plans', 'PlanController@index')->name('plans.index');
 Route::get('/plan/{plan}', 'PlanController@show')->name('plans.show');
 Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');
+
+Route::get('/test', function() { return "GoogBye";})->middleware('verified');
+
